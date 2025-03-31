@@ -5,7 +5,7 @@ WORKDIR /usr/src/app/
 COPY . .
 
 RUN bun install
-RUN bun db:migrate 
+RUN bun db:generate 
 
 EXPOSE 8081
 
