@@ -23,7 +23,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          dockerfile: ./docker/Dockerfile.backend
+          file: ./docker/Dockerfile.backend
           push: true
           tags: |
             ganesh444/user-app-backend:${{ github.sha }}
