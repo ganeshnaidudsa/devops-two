@@ -2,14 +2,26 @@ FROM oven/bun:1
 
 WORKDIR /usr/src/app/
 
+# Define build argument
 ARG DATABASE_URL
 
+# Set environment variable to persist it
+ENV DATABASE_URL=${DATABASE_URL}
+
+# Copy project files
 COPY . .
 
+# Install dependencies
 RUN bun install
+
+# Generate database schema
 RUN bun db:generate 
 
-RUN DATABASE_URL=${DATABASE_URL} bun run build
+# Build the project
+RUN bun run build
 
+# Expose the necessary port
 EXPOSE 3000
-CMD [ "bun","run","start:frontend" ]
+
+# Start the application
+CMD [ "bun", "run", "start:frontend" ]
